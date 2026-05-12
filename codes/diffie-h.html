@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Diffie Algorithm</title>
+    </head>
+    <body>
+
+        <h3>Diffie Algorithm</h3>
+
+        <h2>Alice (user)</h2>
+
+        <label>Prime Number (p): </label>
+        <input type = "number", id = "p"><br><br>
+
+        <label>Generator (g): </label>
+        <input type= "number", id = "g"><br><br>
+
+        <label>Alice Private  Key (a): </label>
+        <input type = "number", id = "a"><br><br>
+
+        <h2>Bob</h2>
+
+        <label>Bob's Private Key (b): </label>
+        <input type = "number", id = "b"><br><br>
+
+        <button onclick = "Calculate()"> Generate Key </button>"
+        <br>
+        
+        <h3>Results: </h3>
+        <p> Alice public Key (A): <span id = "A"></span></p>
+        <p>Bob's Public key (B): <span id = "B"></span></p> 
+        <p>Alice Shared Secret Key (S1): <span id = "S1"></span></p>
+        <p> Bob's Shared Secret Key (S2): <span id = "S2"></span></p>
+
+        <script>
+
+            function modExp(base, exp, mod){
+                let result = 1;
+                base = base % mod;
+
+                while(exp >0){
+                    if(exp % 2 == 1){
+                        result = (result * base) % mod;
+                    }
+
+                    exp = Math.floor(exp / 2);
+                    base = (base * base) % mod;
+                }
+                return result
+            }
+
+            function Calculate(){
+                let p = parseInt(document.getElementById("p").value);
+                let g = parseInt(document.getElementById("g").value);
+                let a = parseInt(document.getElementById("a").value);
+                let b = parseInt(document.getElementById("b").value);
+
+                let A = modExp(g, a, p);
+                let B = modExp(g, b, p);
+                let S1 = modExp(B, a, p);
+                let S2 = modExp(A, b, p);
+
+                document.getElementById("A").innerText = A;
+                document.getElementById("B").innerText = B;
+                document.getElementById("S1").innerText = S1;
+                document.getElementById("S2").innerText = S2;
+            }
+    
+        </script>
+    </body>
+</html>

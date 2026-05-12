@@ -7,7 +7,7 @@ pairs = [
     [r"hi|hello|hey",
      ["Hello! Welcome to Ice Cream Shop "]],
 
-    [r"what flavors do you have ?",
+    [r"flavor ?",
      ["We have chocolate, vanilla and strawberry."]],
 
     [r"price",
